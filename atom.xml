@@ -537,6 +537,42 @@
   </entry>
   
   <entry>
+    <title>使用第三方引导refind美化开机引导界面 &amp; 美化grub2界面</title>
+    <link href="https://mark-thinkpad.gitee.io/2018/09/09/refind_grub/"/>
+    <id>https://mark-thinkpad.gitee.io/2018/09/09/refind_grub/</id>
+    <published>2018-09-08T16:00:00.000Z</published>
+    <updated>2019-02-20T12:02:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><!-- TOC --><ul><li><a href="#content">Content</a><ul><li><a href="#refind的安装--修改为minimal主题">refind的安装 &amp; 修改为minimal主题</a></li><li><a href="#美化grub2界面">美化grub2界面</a></li><li><a href="#关机重启看看效果-如果觉得喜欢其他主题-可以自己动手尝试哦">关机重启看看效果, 如果觉得喜欢其他主题, 可以自己动手尝试哦</a></li></ul></li></ul><!-- /TOC --><hr><a id="more"></a><hr><h2 id="refind的安装-amp-修改为minimal主题"><a href="#refind的安装-amp-修改为minimal主题" class="headerlink" title="refind的安装 &amp; 修改为minimal主题"></a>refind的安装 &amp; 修改为minimal主题</h2><ul><li><code>sudo apt-get install refind</code> 安装refind, 如果过程中出现<code>选择是否自动配置ESP分区</code>的话, 选<code>是</code>就对了</li><li><a href="http://www.rodsbooks.com/refind/themes.html" target="_blank" rel="noopener">http://www.rodsbooks.com/refind/themes.html</a> 去这里下载minimal主题, 下载完了就顺手解压了</li><li><code>su root</code>切换到root用户, 请注意, 接下来将在EFI引导分区操作, 请确认你的头脑是否清醒, 手是否还听话</li><li><code>cd /boot/efi/EFI/refind</code> 切换到refind的文件夹</li><li><code>mkdir themes</code> 创建主题文件夹</li><li><code>cp -r 主题位置 /boot/eif/EFI/refind/themes</code> 将主题内容复制到themes文件夹</li><li><code>rename refind.conf-sample refind.conf</code> 把原sample文件重命名为没有sample的, 原来的那个.conf文件后面加一个<code>.backup</code>备份一下</li><li>在refind.conf末尾添加<code>include themes/rEFInd-minimal/theme.conf</code>, 保存退出(默认看这篇文章的都会用vim)</li><li>重启看效果啦</li></ul><hr><h2 id="美化grub2界面"><a href="#美化grub2界面" class="headerlink" title="美化grub2界面"></a>美化grub2界面</h2><ul><li>有的时候呢, 升级了一下内核, 系统会自动重建一下引导, 一重启之后发现, 我的<code>refind</code>去哪里了??? 默认的grub2界面好丑啊, 接下来教你给grub换层好看的皮, 防止在refind突然不见的情况下看见黑漆漆的grub2导致心态爆炸.</li><li>先提供一个有很多grub主题的网站:<a href="https://www.gnome-look.org/browse/cat/109/ord/latest/" target="_blank" rel="noopener">https://www.gnome-look.org/browse/cat/109/ord/latest/</a></li><li>我们挑选一个跟前面的minimal主题颜色比较接近的grub主题: <a href="https://www.gnome-look.org/p/1176413/" target="_blank" rel="noopener">地址</a></li><li>手懒的同学(比如我)直接执行下面这一条命令就完事了: <code>wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash</code></li></ul><hr><h2 id="关机重启看看效果-如果觉得喜欢其他主题-可以自己动手尝试哦"><a href="#关机重启看看效果-如果觉得喜欢其他主题-可以自己动手尝试哦" class="headerlink" title="关机重启看看效果, 如果觉得喜欢其他主题, 可以自己动手尝试哦"></a>关机重启看看效果, 如果觉得喜欢其他主题, 可以自己动手尝试哦</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Content&quot;&gt;&lt;a href=&quot;#Content&quot; class=&quot;headerlink&quot; title=&quot;Content&quot;&gt;&lt;/a&gt;Content&lt;/h1&gt;&lt;!-- TOC --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#content&quot;&gt;Content&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#refind的安装--修改为minimal主题&quot;&gt;refind的安装 &amp;amp; 修改为minimal主题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#美化grub2界面&quot;&gt;美化grub2界面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#关机重启看看效果-如果觉得喜欢其他主题-可以自己动手尝试哦&quot;&gt;关机重启看看效果, 如果觉得喜欢其他主题, 可以自己动手尝试哦&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /TOC --&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="Start_Linux" scheme="https://mark-thinkpad.gitee.io/categories/Start-Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://mark-thinkpad.gitee.io/tags/Linux/"/>
+    
+      <category term="refind" scheme="https://mark-thinkpad.gitee.io/tags/refind/"/>
+    
+      <category term="grub2" scheme="https://mark-thinkpad.gitee.io/tags/grub2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用deepin-wine方案实现Linux系统运行qq, tim, 微信等常用windows软件</title>
     <link href="https://mark-thinkpad.gitee.io/2018/09/09/deepin_wine/"/>
     <id>https://mark-thinkpad.gitee.io/2018/09/09/deepin_wine/</id>
@@ -573,42 +609,6 @@
       <category term="qq" scheme="https://mark-thinkpad.gitee.io/tags/qq/"/>
     
       <category term="tim" scheme="https://mark-thinkpad.gitee.io/tags/tim/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用第三方引导refind美化开机引导界面 &amp; 美化grub2界面</title>
-    <link href="https://mark-thinkpad.gitee.io/2018/09/09/refind_grub/"/>
-    <id>https://mark-thinkpad.gitee.io/2018/09/09/refind_grub/</id>
-    <published>2018-09-08T16:00:00.000Z</published>
-    <updated>2019-02-20T12:02:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><!-- TOC --><ul><li><a href="#content">Content</a><ul><li><a href="#refind的安装--修改为minimal主题">refind的安装 &amp; 修改为minimal主题</a></li><li><a href="#美化grub2界面">美化grub2界面</a></li><li><a href="#关机重启看看效果-如果觉得喜欢其他主题-可以自己动手尝试哦">关机重启看看效果, 如果觉得喜欢其他主题, 可以自己动手尝试哦</a></li></ul></li></ul><!-- /TOC --><hr><a id="more"></a><hr><h2 id="refind的安装-amp-修改为minimal主题"><a href="#refind的安装-amp-修改为minimal主题" class="headerlink" title="refind的安装 &amp; 修改为minimal主题"></a>refind的安装 &amp; 修改为minimal主题</h2><ul><li><code>sudo apt-get install refind</code> 安装refind, 如果过程中出现<code>选择是否自动配置ESP分区</code>的话, 选<code>是</code>就对了</li><li><a href="http://www.rodsbooks.com/refind/themes.html" target="_blank" rel="noopener">http://www.rodsbooks.com/refind/themes.html</a> 去这里下载minimal主题, 下载完了就顺手解压了</li><li><code>su root</code>切换到root用户, 请注意, 接下来将在EFI引导分区操作, 请确认你的头脑是否清醒, 手是否还听话</li><li><code>cd /boot/efi/EFI/refind</code> 切换到refind的文件夹</li><li><code>mkdir themes</code> 创建主题文件夹</li><li><code>cp -r 主题位置 /boot/eif/EFI/refind/themes</code> 将主题内容复制到themes文件夹</li><li><code>rename refind.conf-sample refind.conf</code> 把原sample文件重命名为没有sample的, 原来的那个.conf文件后面加一个<code>.backup</code>备份一下</li><li>在refind.conf末尾添加<code>include themes/rEFInd-minimal/theme.conf</code>, 保存退出(默认看这篇文章的都会用vim)</li><li>重启看效果啦</li></ul><hr><h2 id="美化grub2界面"><a href="#美化grub2界面" class="headerlink" title="美化grub2界面"></a>美化grub2界面</h2><ul><li>有的时候呢, 升级了一下内核, 系统会自动重建一下引导, 一重启之后发现, 我的<code>refind</code>去哪里了??? 默认的grub2界面好丑啊, 接下来教你给grub换层好看的皮, 防止在refind突然不见的情况下看见黑漆漆的grub2导致心态爆炸.</li><li>先提供一个有很多grub主题的网站:<a href="https://www.gnome-look.org/browse/cat/109/ord/latest/" target="_blank" rel="noopener">https://www.gnome-look.org/browse/cat/109/ord/latest/</a></li><li>我们挑选一个跟前面的minimal主题颜色比较接近的grub主题: <a href="https://www.gnome-look.org/p/1176413/" target="_blank" rel="noopener">地址</a></li><li>手懒的同学(比如我)直接执行下面这一条命令就完事了: <code>wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash</code></li></ul><hr><h2 id="关机重启看看效果-如果觉得喜欢其他主题-可以自己动手尝试哦"><a href="#关机重启看看效果-如果觉得喜欢其他主题-可以自己动手尝试哦" class="headerlink" title="关机重启看看效果, 如果觉得喜欢其他主题, 可以自己动手尝试哦"></a>关机重启看看效果, 如果觉得喜欢其他主题, 可以自己动手尝试哦</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Content&quot;&gt;&lt;a href=&quot;#Content&quot; class=&quot;headerlink&quot; title=&quot;Content&quot;&gt;&lt;/a&gt;Content&lt;/h1&gt;&lt;!-- TOC --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#content&quot;&gt;Content&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#refind的安装--修改为minimal主题&quot;&gt;refind的安装 &amp;amp; 修改为minimal主题&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#美化grub2界面&quot;&gt;美化grub2界面&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#关机重启看看效果-如果觉得喜欢其他主题-可以自己动手尝试哦&quot;&gt;关机重启看看效果, 如果觉得喜欢其他主题, 可以自己动手尝试哦&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /TOC --&gt;
-&lt;hr&gt;
-    
-    </summary>
-    
-      <category term="Start_Linux" scheme="https://mark-thinkpad.gitee.io/categories/Start-Linux/"/>
-    
-    
-      <category term="Linux" scheme="https://mark-thinkpad.gitee.io/tags/Linux/"/>
-    
-      <category term="refind" scheme="https://mark-thinkpad.gitee.io/tags/refind/"/>
-    
-      <category term="grub2" scheme="https://mark-thinkpad.gitee.io/tags/grub2/"/>
     
   </entry>
   
