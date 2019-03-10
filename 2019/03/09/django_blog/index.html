@@ -216,9 +216,14 @@
 <li><a href="#content">Content</a><ul>
 <li><a href="#开发环境">开发环境</a></li>
 <li><a href="#pip-换源">pip 换源</a></li>
+<li><a href="#安装-python-django-库">安装 Python-Django 库</a></li>
 <li><a href="#创建项目">创建项目</a></li>
 <li><a href="#settingspy--urlspy-里面的初始设置">settings.py &amp;&amp; urls.py 里面的初始设置</a></li>
-<li><a href="#安装-mysql">安装 MySQL</a></li>
+<li><a href="#安装-mysql--创建-database">安装 MySQL &amp;&amp; 创建 Database</a></li>
+<li><a href="#安装-python-mysqlclient-库">安装 python-mysqlclient 库</a></li>
+<li><a href="#模型迁移">模型迁移</a></li>
+<li><a href="#创建超级用户">创建超级用户</a></li>
+<li><a href="#可以开始搞事情了">可以开始搞事情了!</a></li>
 </ul>
 </li>
 </ul>
@@ -228,6 +233,11 @@
 <hr>
 <h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
 <li>操作系统: <code>Manjaro Linux 18</code></li>
+<li>Python版本: <code>Python3</code> <blockquote>
+<p>提示: Manjaro把Python3作为默认的Python版本, 其他发行版可能默认版本是Python2, 如果默认为Python2, 以下出现的Python和pip命令请使用python3和pip3</p>
+</blockquote>
+</li>
+<li>Django版本: <code>v2.1.5</code></li>
 <li>主力IDE: <code>PyCharm</code> (使用教育邮箱激活)</li>
 <li>辅助Editor: <code>Visual Studio Code</code></li>
 </ul>
@@ -237,6 +247,16 @@
 <li>官方换源文档: <a href="https://mirror.tuna.tsinghua.edu.cn/help/pypi/" target="_blank" rel="noopener">清华源pipy镜像使用帮助</a></li>
 <li>已经入门的Linux用户对各种换国内源应该已经轻车熟路了, 我向新手推荐几个常用的国内的开源镜像站: <a href="http://mirrors.ustc.edu.cn/" target="_blank" rel="noopener">中科大源</a>, <a href="https://mirror.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">清华源</a>, 我个人常用的就这两个, 主要用中科大源. 有人刚点进去可能就要问了, 我该怎么使用呢? 很简单, 页面的右侧一般有 <code>下载系统镜像</code>和 <code>配置软件源</code> 的按钮, 清华源则可以查看 <code>相关链接</code> 中的 <code>使用帮助</code>, 很多网站都有类似的帮助页面, 比如说非常著名的 <code>Arch Wiki</code>, 是Arch新手入门的官方指南. <code>授人以鱼不如授人以渔</code>, 我就不直接放出帮助页面的链接了, 希望大家能用 <code>脑中的常识和智慧</code> 解决问题, 而不是用 <code>嘴</code> 解决问题.</li>
 </ul>
+<hr>
+<h2 id="安装-Python-Django-库"><a href="#安装-Python-Django-库" class="headerlink" title="安装 Python-Django 库"></a>安装 Python-Django 库</h2><ul>
+<li><code>pip install Django==2.1.5 --user</code><blockquote>
+<p><code>==版本号</code> 可以安装指定的版本, 避免一些不必要的兼容问题. </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>加上 <code>--user</code> 的意思是以普通用户的身份进行安装, 否则会显示权限不足(因为Python的文件夹权限所致), 或者前面加个 <code>sudo</code> 也能顺利安装.</p>
+</blockquote>
 <hr>
 <h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><ul>
 <li>打开PyCharm, 点击菜单栏左边第一个 <code>File</code> -&gt; <code>New Project</code> -&gt; <code>Django</code></li>
@@ -250,13 +270,13 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Static files (CSS, JavaScript, Images)</span></span><br><span class="line"><span class="comment"># https://docs.djangoproject.com/en/2.1/howto/static-files/</span></span><br><span class="line"></span><br><span class="line">STATIC_URL = <span class="string">'/static/'</span></span><br><span class="line">STATICFILES_DIRS = [</span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">"static"</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>那么在上方的注释中, 第一行是说明, 这个默认创建的静态文件夹可以放css, js &amp;&amp; 图像文件, 但是出于强迫症晚期和方便文件整理的考虑, 我们在下面创建一个 <code>/media/</code> 文件夹, 专门存放图片, 这个文件夹只放css, js或者是其他的前端库文件夹. 第二行注释是设置静态文件夹的官方文档, 如果说你在setting.py里面想自定义一些东西是不知道怎么改, 先找你要改动的地方有没有这样的注释, 如果有, 按住 <code>Ctrl键</code> 鼠标左击链接就可以直接用默认浏览器打开这个链接了</p>
+<p>那么在上方的注释中, 第一行是说明, 这个默认创建的静态文件夹可以放css, js &amp;&amp; 图像文件, 但是出于强迫症晚期和方便文件整理的考虑, 我们在下面创建一个 <code>/media/</code> 文件夹, 专门存放图片, 这个文件夹只放css, js或者是其他的前端库文件夹. 第二行注释是设置静态文件夹的官方文档, 如果说你在setting.py里面想自定义一些东西是不知道怎么改, 先找你要改动的地方有没有这样的注释, 如果有, 按住 <code>Ctrl键</code> 鼠标左击链接就可以直接用默认浏览器打开这个链接了, 如果没有, 自觉使用Google &amp;&amp; Bing必应, 为什么不说百度? 厌了</p>
 </blockquote>
 <blockquote>
 <p>注: 上述的 <code>ctrl+点击</code> 来打开链接的方式普遍见于许多环境中, 比如 <code>Linux终端</code>, 众多的IDE和Editor. 简单一句话, 常规操作 (授人以鱼不如授人以渔 x2)</p>
 </blockquote>
 <ul>
-<li>在静态文件夹设置项目的后面追加以下代码:</li>
+<li>创建一个跟 <code>/static/</code> 文件夹同级(绝对路径和相对路径的概念应该understand吧)的 <code>/media/</code> 文件夹, 在静态文件夹设置项目的后面追加以下代码:</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Media files</span></span><br><span class="line"><span class="comment"># https://blog.csdn.net/xxx_gt/article/details/79719790</span></span><br><span class="line"></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">"media"</span>)</span><br><span class="line">MEDIA_URL = <span class="string">'/media/'</span>  <span class="comment"># 跟STATIC_URL类似，指定用户可以通过这个路径找到文件</span></span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -277,16 +297,85 @@
 <p>注: 想知道为什么这么写吗? 详见注释中的链接 (重要的事情说三遍)</p>
 </blockquote>
 <hr>
-<h2 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h2><ul>
-<li>在 <code>Arch</code> 的官方文档中 <code>(Arch &amp;&amp; Manjaro 一家亲)</code>, <code>MariaDB</code> 是 <code>Arch</code> 官方定义的 <code>MySQL</code> 的默认实现, <code>Arch</code> 官方已经不再支持 <code>MySQL</code> , 转而支持 <code>MariaDB</code> (关于MySQL和MariaDB的故事, 有兴趣的可以在Google或者Bing必应上搜一下, 百度我已经很少用了), 但是我偏偏就是要装 <code>MySQL</code>, 不慌, 在 <code>Arch cn</code> 源中有现成的包, 关于添加 <code>Arch cn</code>源: <a href="http://mirrors.ustc.edu.cn/help/archlinuxcn.html" target="_blank" rel="noopener">中科大Arch Linux CN源使用帮助</a></li>
+<h2 id="安装-MySQL-amp-amp-创建-Database"><a href="#安装-MySQL-amp-amp-创建-Database" class="headerlink" title="安装 MySQL &amp;&amp; 创建 Database"></a>安装 MySQL &amp;&amp; 创建 Database</h2><ul>
+<li><p>在 <code>Arch</code> 的官方文档中 <code>(Arch &amp;&amp; Manjaro 一家亲)</code>, <code>MariaDB</code> 是 <code>Arch</code> 官方定义的 <code>MySQL</code> 的默认实现, <code>Arch</code> 官方已经不再支持 <code>MySQL</code> , 转而支持 <code>MariaDB</code> (关于MySQL和MariaDB的故事, 有兴趣的可以在Google或者Bing必应上搜一下, 百度我已经很少用了), 但是我偏偏就是要装 <code>MySQL</code>, 不慌, 在 <code>Arch cn</code> 源中有现成的包, 关于添加 <code>Arch cn</code>源: <a href="http://mirrors.ustc.edu.cn/help/archlinuxcn.html" target="_blank" rel="noopener">中科大Arch Linux CN源使用帮助</a></p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/12c871f937f7" target="_blank" rel="noopener">参考文档</a></p>
+</li>
+<li><p>以下是安装步骤(全程终端):</p>
+<ul>
+<li><code>sudo pacman -S mysql</code></li>
+<li><p>安装完成后在终端中会显示以下提示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">正在安装 mysql-clients (8.0.11-1)...</span><br><span class="line">正在安装 mysql (8.0.11-1)...</span><br><span class="line">:: You need to initialize the MySQL data directory prior to starting</span><br><span class="line">the service. This can be done with mysqld --initialize command, e.g.:</span><br><span class="line">mysqld --initialize --user=mysql --basedir=/usr --datadir=/var/lib/mysql</span><br><span class="line">:: Additionally you should secure your MySQL installation using</span><br><span class="line">mysql_secure_installation command after starting the mysqld service</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>那么需要执行上述的两条命令来初始化MySQL</p>
+</blockquote>
+</li>
+<li><p>初始化MySql数据目录/注意记录root临时密码(以下操作如果无法显示初始化失败, 请在命令的最前面加上 <code>sudo</code>): <code>mysqld --initialize --user=mysql --basedir=/usr --datadir=/var/lib/mysql</code>, 注意记录root用户的临时密码</p>
+</li>
+<li><p>查看MySql状态: <code>sudo systemctl status mysqld</code>, 这时候不出意外是没有开启的</p>
+<blockquote>
+<p>小贴士: 善用 <code>Tab键</code> 自动补全</p>
+</blockquote>
+</li>
+<li><p>启动MySql服务/开机自启: <code>sudo systemctl start mysqld</code>, <code>sudo systemctl enable mysqld</code></p>
+</li>
+<li><p>此时可以再次查看一下 <code>mysqld.service</code> 是否启动</p>
+<blockquote>
+<p>注: <code>.service</code> 后缀可以省略, <code>Tab键</code> 自动补全时会带上 <code>.service</code> 后缀</p>
+</blockquote>
+</li>
+<li><p>账户安全设置/需要使用root临时密码登陆(执行不成功请加上 <code>sudo</code> 提权): <code>mysql_secure_installation</code></p>
+</li>
+<li><p>后面的操作, 能看懂基本的单词和语句应该几下子就搞完了</p>
+</li>
 </ul>
-
+</li>
+<li><p>接下来创建一个新的Database:</p>
+<ul>
+<li>进入MySQL: <code>mysql -u root -p</code></li>
+<li>输入root用户密码: <code>Enter password:******  # 登录后进入终端</code></li>
+<li>创建Database: <code>CREATE DATABASE 数据库名;</code> (注意结尾一定要打分号!)</li>
+<li><p>查看Database: <code>show databases;</code>, maybe是这样的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| blog               |</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建完成, 检查一下在 <code>setting.py</code> 中的设置数据库的各个参数是否一致</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="安装-python-mysqlclient-库"><a href="#安装-python-mysqlclient-库" class="headerlink" title="安装 python-mysqlclient 库"></a>安装 python-mysqlclient 库</h2><ul>
+<li>Django框架由于是Python库, 需要一个 <code>桥梁</code> 去连接 Django &amp;&amp; MySQL</li>
+<li>安装: <code>pip install mysqlclient --user</code>, 加上 <code>--user</code> 的意思是以普通用户的身份进行安装, 否则会显示权限不足(因为Python的文件夹权限所致), 或者前面加个 <code>sudo</code> 也能顺利安装</li>
+</ul>
+<hr>
+<h2 id="模型迁移"><a href="#模型迁移" class="headerlink" title="模型迁移"></a>模型迁移</h2><ul>
+<li><p>打开 <code>PyCharm</code>的终端 或者 <code>Linux终端</code>, 在这个项目文件夹内, 执行 <code>python manage.py makemigrations</code>, 如果提示 <code>Do you install XXXX</code>, 即问你是否安装了叫XXXX的Python库时, 用上一步的方法安装即可. 执行成功了应该是刷出了一堆东西然后告诉你OK了</p>
+<blockquote>
+<p>小贴士: <code>makemigrations</code> 太长? 善用 <code>Tab键</code> 自动补全</p>
+</blockquote>
+</li>
+<li><p>执行 <code>python manage.py migrate</code>, 完成迁移</p>
+</li>
+</ul>
+<hr>
+<h2 id="创建超级用户"><a href="#创建超级用户" class="headerlink" title="创建超级用户"></a>创建超级用户</h2><ul>
+<li>由于在后面需要多次使用admin后台管理模块, 所以需要一个权限最大的超级用户方便操作和开发 (老话说得好: <code>root一时爽, 一直root一直爽</code>)</li>
+<li>执行 <code>python manage.py createsuperuser</code><blockquote>
+<p>小贴士: <code>createsuperuser</code> 太长了? 善用 <code>Tab键</code> 自动补全</p>
+</blockquote>
+</li>
+<li>输入用户名和密码应该是小意思了, 建议不要太长, 后面测试登录页面以及需要登录后才能使用的页面时, 你会知道是什么感觉的(#手动滑稽)</li>
+</ul>
+<hr>
+<h2 id="可以开始搞事情了"><a href="#可以开始搞事情了" class="headerlink" title="可以开始搞事情了!"></a>可以开始搞事情了!</h2>
       </div>
         
           <section class="meta" id="footer-meta">
             
-              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-09T21:41:49+08:00" content="2019-03-09"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
-                &nbsp;2019-03-09
+              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-10T11:11:17+08:00" content="2019-03-10"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
+                &nbsp;2019-03-10
               </time>
             
             
@@ -342,7 +431,7 @@
       
         <div class="recommended_posts">
     <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;相关文章</h4>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/10/04/django/" title="Django项目创建流程" rel="bookmark">Django项目创建流程</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2019/02/21/bignews/" title="大新闻" rel="bookmark">大新闻</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/09/20/QQ_Spider/" title="简单到不能再简单的QQ空间自动点赞实战" rel="bookmark">简单到不能再简单的QQ空间自动点赞实战</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/09/11/sl_display/" title="Linux终端上好玩的命令" rel="bookmark">Linux终端上好玩的命令</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/09/09/refind_grub/" title="使用第三方引导refind美化开机引导界面 & 美化grub2界面" rel="bookmark">使用第三方引导refind美化开机引导界面 & 美化grub2界面</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/10/04/django/" title="Django项目创建流程" rel="bookmark">Django项目创建流程</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2019/02/21/bignews/" title="大新闻" rel="bookmark">大新闻</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/09/20/QQ_Spider/" title="简单到不能再简单的QQ空间自动点赞实战" rel="bookmark">简单到不能再简单的QQ空间自动点赞实战</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/09/11/sl_display/" title="Linux终端上好玩的命令" rel="bookmark">Linux终端上好玩的命令</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/09/09/deepin_wine/" title="使用deepin-wine方案实现Linux系统运行qq, tim, 微信等常用windows软件" rel="bookmark">使用deepin-wine方案实现Linux系统运行qq, tim, 微信等常用windows软件</a></h3></div></li></ul>
 </div>
 
       
@@ -684,7 +773,7 @@
 </header>
 
     <div class="content material">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pip-换源"><span class="toc-text">pip 换源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建项目"><span class="toc-text">创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#settings-py-amp-amp-urls-py-里面的初始设置"><span class="toc-text">settings.py &amp;&amp; urls.py 里面的初始设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-MySQL"><span class="toc-text">安装 MySQL</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pip-换源"><span class="toc-text">pip 换源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Python-Django-库"><span class="toc-text">安装 Python-Django 库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建项目"><span class="toc-text">创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#settings-py-amp-amp-urls-py-里面的初始设置"><span class="toc-text">settings.py &amp;&amp; urls.py 里面的初始设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-MySQL-amp-amp-创建-Database"><span class="toc-text">安装 MySQL &amp;&amp; 创建 Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-python-mysqlclient-库"><span class="toc-text">安装 python-mysqlclient 库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型迁移"><span class="toc-text">模型迁移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建超级用户"><span class="toc-text">创建超级用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以开始搞事情了"><span class="toc-text">可以开始搞事情了!</span></a></li></ol></li></ol>
     </div>
   </section>
 
