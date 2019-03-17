@@ -218,7 +218,7 @@
 <li><a href="#html部分">HTML部分</a></li>
 <li><a href="#js部分">js部分</a></li>
 <li><a href="#使用-formdata-对象打包数据">使用 FormData 对象打包数据</a></li>
-<li><a href="#看来这些基础内容-相信大家可以举一反三了">看来这些基础内容, 相信大家可以举一反三了</a></li>
+<li><a href="#看了这些基础内容-相信大家可以举一反三了">看了这些基础内容, 相信大家可以举一反三了</a></li>
 </ul>
 </li>
 </ul>
@@ -284,12 +284,12 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: <span class="string">'POST'</span>,</span><br><span class="line">    url: <span class="string">'/image_upload_api/'</span>,</span><br><span class="line">    data: formFile,</span><br><span class="line">    dataType: <span class="string">'json'</span>, <span class="comment">// 设置预期的服务器返回的数据类型</span></span><br><span class="line">    cache: <span class="literal">false</span>,</span><br><span class="line">    contentType: <span class="literal">false</span>,</span><br><span class="line">    processData: <span class="literal">false</span>, <span class="comment">// 不处理表单数据, 在上传图片时需要加上</span></span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (data.status === <span class="string">"OK"</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> message = <span class="string">"上传成功. 是否跳转到图库?"</span>;</span><br><span class="line">            <span class="keyword">if</span> (confirm(message) === <span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="built_in">window</span>.location.href = <span class="string">'/gallery_page/'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">window</span>.location.reload();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (data.status === <span class="string">"WTF"</span>) &#123;</span><br><span class="line">            alert(<span class="string">"Create objects error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params">jpXHR</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">"Status Code: "</span> + jpXHR.status);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="看来这些基础内容-相信大家可以举一反三了"><a href="#看来这些基础内容-相信大家可以举一反三了" class="headerlink" title="看来这些基础内容, 相信大家可以举一反三了"></a>看来这些基础内容, 相信大家可以举一反三了</h2>
+<h2 id="看了这些基础内容-相信大家可以举一反三了"><a href="#看了这些基础内容-相信大家可以举一反三了" class="headerlink" title="看了这些基础内容, 相信大家可以举一反三了"></a>看了这些基础内容, 相信大家可以举一反三了</h2>
       </div>
         
           <section class="meta" id="footer-meta">
             
-              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-17T18:19:52+08:00" content="2019-03-17"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
+              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-17T18:21:35+08:00" content="2019-03-17"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
                 &nbsp;2019-03-17
               </time>
             
@@ -696,7 +696,7 @@
 </header>
 
     <div class="content material">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML部分"><span class="toc-text">HTML部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js部分"><span class="toc-text">js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-FormData-对象打包数据"><span class="toc-text">使用 FormData 对象打包数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#看来这些基础内容-相信大家可以举一反三了"><span class="toc-text">看来这些基础内容, 相信大家可以举一反三了</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML部分"><span class="toc-text">HTML部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js部分"><span class="toc-text">js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-FormData-对象打包数据"><span class="toc-text">使用 FormData 对象打包数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#看了这些基础内容-相信大家可以举一反三了"><span class="toc-text">看了这些基础内容, 相信大家可以举一反三了</span></a></li></ol></li></ol>
     </div>
   </section>
 
