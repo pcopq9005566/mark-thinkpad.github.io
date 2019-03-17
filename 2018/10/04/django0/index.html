@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Tag: tim | Mark&#39;s blog</title>
+  <title>Django项目创建流程 | Mark&#39;s blog</title>
   
   
 
@@ -169,35 +169,20 @@
     <div class="l_body">
     <div class='container clearfix'>
         <div class='l_main'>
-            
-    <script>
-        window.subData= { title:'标签 : tim'}
-    </script>
-
-
-<section class="post-list">
-    
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-    
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
 <section class="meta">
   
   <div class="meta" id="header-meta">
     
-      <h2 class="title">
-          <a href="/blog/2019/02/21/bignews/">
-              
-                  大新闻
-              
-          </a>
-      </h2>
+      
+          <h1 class="title">Django项目创建流程</h1>
+      
     
 
     
       <time class="metatag time">
-        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2019-02-21
+        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2018-10-04
       </time>
     
 
@@ -205,115 +190,18 @@
       
     
     <div class="metatag cats">
-        <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;<a class="categories" href="/blog/categories/Start-Linux/">Start_Linux</a>
+        <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;<a class="categories" href="/blog/categories/Programs/">Programs</a>
     </div>
 
 
     
 
     
-
-    
-      <div class="metatag top">
-        <i class="fas fa-angle-double-up fa-fw" aria-hidden="true"></i>&nbsp;置顶
-      </div>
-    
-
-  </div>
-</section>
-
-    <section class="article typo">
-        <h2 id="正在以Linux-Nginx-MySQL-Python-Django的架构和全栈的方式做一个新的个人博客-备用站点"><a href="#正在以Linux-Nginx-MySQL-Python-Django的架构和全栈的方式做一个新的个人博客-备用站点" class="headerlink" title="正在以Linux+Nginx+MySQL+Python Django的架构和全栈的方式做一个新的个人博客(备用站点)"></a>正在以Linux+Nginx+MySQL+Python Django的架构和全栈的方式做一个新的个人博客(备用站点)</h2><ul>
-<li>开发阶段的系统环境：Manjaro 18， 服务器系统环境：Ubuntu Server 18.04</li>
-<li>第一版v0.9.0已经发布, 现在开始更新一个系列的文章内容来讲解这次的开发过程和技术实现</li>
-<li><a href="https://gitee.com/Mark-ThinkPad/newbie_blog" target="_blank" rel="noopener">项目地址</a></li>
-</ul>
-<hr>
-
-        
-
-        
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/blog/tags/Linux/"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
-                
-                    <a href="/blog/tags/Manjaro/"><i class="fas fa-hashtag fa-fw"></i>Manjaro</a>
-                
-            </div>
-        
-    </section>
-</article>
-
-          </div>
-        
       
-        
+        <div class="metatag browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+          &nbsp;<span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+        </div>
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-        <div class="post-wrapper">
-          <article class="post reveal ">
-    
-<section class="meta">
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/blog/2018/09/09/deepin_wine/">
-              
-                  使用deepin-wine方案实现Linux系统运行qq, tim, 微信等常用windows软件
-              
-          </a>
-      </h2>
-    
-
-    
-      <time class="metatag time">
-        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2018-09-09
-      </time>
-    
-
-    
-      
-    
-    <div class="metatag cats">
-        <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;<a class="categories" href="/blog/categories/Start-Linux/">Start_Linux</a>
-    </div>
-
-
-    
-
     
 
     
@@ -322,54 +210,154 @@
 </section>
 
     <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
         <h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><!-- TOC -->
 <ul>
 <li><a href="#content">Content</a><ul>
-<li><a href="#文章内容来源">文章内容来源</a></li>
-<li><a href="#背景">背景</a></li>
-<li><a href="#安装deepin-wine环境--安装deepin应用容器">安装deepin-wine环境 &amp; 安装deepin应用容器</a></li>
-<li><a href="#附deepin-wine-for-ubuntu项目地址">附deepin-wine-for-ubuntu项目地址</a></li>
-<li><a href="#开始使用qqtim吧">开始使用QQ/TIM吧</a></li>
+<li><a href="#本文的开发环境">本文的开发环境</a></li>
+<li><a href="#安装django">安装Django</a></li>
+<li><a href="#创建一个项目文件夹">创建一个项目文件夹</a></li>
+<li><a href="#检验创建是否成功">检验创建是否成功</a></li>
+<li><a href="#创建一个应用">创建一个应用</a></li>
+<li><a href="#创建templates文件夹和static文件夹">创建templates文件夹和static文件夹</a></li>
 </ul>
 </li>
 </ul>
 <!-- /TOC -->
 <hr>
+<a id="more"></a>
+<hr>
+<h2 id="本文的开发环境"><a href="#本文的开发环境" class="headerlink" title="本文的开发环境"></a>本文的开发环境</h2><ul>
+<li><code>Ubuntu Mate 18.04 LTS</code></li>
+<li><code>Python3</code></li>
+<li>依照Django2.0官方文档编写</li>
+</ul>
+<hr>
+<h2 id="安装Django"><a href="#安装Django" class="headerlink" title="安装Django"></a>安装Django</h2><ul>
+<li><code>sudo pip3 install django</code></li>
+</ul>
+<hr>
+<h2 id="创建一个项目文件夹"><a href="#创建一个项目文件夹" class="headerlink" title="创建一个项目文件夹"></a>创建一个项目文件夹</h2><ul>
+<li><code>django-admin startproject 项目名</code></li>
+</ul>
+<hr>
+<h2 id="检验创建是否成功"><a href="#检验创建是否成功" class="headerlink" title="检验创建是否成功"></a>检验创建是否成功</h2><ul>
+<li><code>cd</code>到当前项目文件夹</li>
+<li><code>python3 manage.py runserver</code> 这将是后面进行网页展示的命令</li>
+<li>打开终端下面出现的本地地址<code>http://127.0.0.1:8000/</code></li>
+<li>出现一个会动的小火箭即为成功</li>
+</ul>
+<hr>
+<h2 id="创建一个应用"><a href="#创建一个应用" class="headerlink" title="创建一个应用"></a>创建一个应用</h2><ul>
+<li>之后都在当前项目文件夹里操作</li>
+<li><code>python manage.py startapp 应用名</code></li>
+<li>在当前应用文件夹里新建<code>urls.py</code>文件</li>
+</ul>
+<hr>
+<h2 id="创建templates文件夹和static文件夹"><a href="#创建templates文件夹和static文件夹" class="headerlink" title="创建templates文件夹和static文件夹"></a>创建templates文件夹和static文件夹</h2><ul>
+<li><code>cd</code>到应用的文件夹里</li>
+<li>话不多说<code>mkdir</code></li>
+<li><code>templates</code>里面放<code>HTML</code>文件</li>
+<li><code>static</code>里面创建css文件夹放<code>css</code>文件</li>
+</ul>
+<hr>
+
+      </div>
         
-            <div class="readmore">
-                <a href="/blog/2018/09/09/deepin_wine/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <section class="meta" id="footer-meta">
+            
+              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-12T10:48:42+08:00" content="2019-03-12"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
+                &nbsp;2019-03-12
+              </time>
+            
+            
+                
+                <div class="metatag tags"><a class="tag" href="/blog/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Linux</a></div> <div class="metatag tags"><a class="tag" href="/blog/tags/Django/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Django</a></div> <div class="metatag tags"><a class="tag" href="/blog/tags/Web/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Web</a></div> <div class="metatag tags"><a class="tag" href="/blog/tags/Python3/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Python3</a></div>
+            
+            
+          </section>
         
 
         
-            <div class="full-width auto-padding tags">
+            <div class="prev-next">
                 
-                    <a href="/blog/tags/Linux/"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/blog/2018/10/05/self2/" rel="prev" title="《内心的自我》读书笔记 (第二章)">
+                                  
+                                      《内心的自我》读书笔记 (第二章)
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/blog/tags/book/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>book</a> <a class="tag" href="/blog/tags/self/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>self</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
-                    <a href="/blog/tags/deepin-wine/"><i class="fas fa-hashtag fa-fw"></i>deepin-wine</a>
                 
-                    <a href="/blog/tags/qq/"><i class="fas fa-hashtag fa-fw"></i>qq</a>
-                
-                    <a href="/blog/tags/tim/"><i class="fas fa-hashtag fa-fw"></i>tim</a>
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/blog/2018/10/04/self/" rel="prev" title="《内心的自我》读书笔记 (第一章)">
+                                    
+                                        《内心的自我》读书笔记 (第一章)
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/blog/tags/book/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>book</a> <a class="tag" href="/blog/tags/self/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>self</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
             </div>
         
+
     </section>
+
 </article>
 
-        </div>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
       
-    
-</section>
+      
+        <div class="recommended_posts">
+    <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;相关文章</h4>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2019/03/17/django_blog1/" title="Django实战之搭建个人博客(Ajax篇)" rel="bookmark">Django实战之搭建个人博客(Ajax篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2019/03/09/django_blog0/" title="Django实战之搭建个人博客(准备篇)" rel="bookmark">Django实战之搭建个人博客(准备篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2019/02/21/bignews/" title="大新闻" rel="bookmark">大新闻</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/09/20/QQ_Spider/" title="简单到不能再简单的QQ空间自动点赞实战" rel="bookmark">简单到不能再简单的QQ空间自动点赞实战</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/09/11/sl_display/" title="Linux终端上好玩的命令" rel="bookmark">Linux终端上好玩的命令</a></h3></div></li></ul>
+</div>
+
+      
+      
+    </section>
+  </article>
 
 
 
-<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-
-
+<script>
+    window.subData = {
+        title: 'Django项目创建流程',
+        tools: true
+    }
+</script>
 
 
         </div>
@@ -534,6 +522,28 @@
         
 
 
+  <section class="music">
+    
+<header class="material">
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+  
+    <a class="rightBtn" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/user/home?id=35189854" title="https://music.163.com/#/user/home?id=35189854">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class="content material">
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer" data-theme="#1BCDFC" data-mode="circulation" data-server="netease" data-type="playlist" data-id="2347451090" data-volume="0.7">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
 
       
     
@@ -662,6 +672,20 @@
       
       
         
+  <section class="toc-wrapper">
+    
+<header class="material">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content material">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本文的开发环境"><span class="toc-text">本文的开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Django"><span class="toc-text">安装Django</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个项目文件夹"><span class="toc-text">创建一个项目文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检验创建是否成功"><span class="toc-text">检验创建是否成功</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个应用"><span class="toc-text">创建一个应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建templates文件夹和static文件夹"><span class="toc-text">创建templates文件夹和static文件夹</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
       
     
