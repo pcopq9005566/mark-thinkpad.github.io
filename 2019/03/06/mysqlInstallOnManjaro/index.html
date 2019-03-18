@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Tag: 自动点赞 | Mark&#39;s blog</title>
+  <title>在Manjaro上安装MySQL | Mark&#39;s blog</title>
   
   
 
@@ -169,141 +169,20 @@
     <div class="l_body">
     <div class='container clearfix'>
         <div class='l_main'>
-            
-    <script>
-        window.subData= { title:'标签 : 自动点赞'}
-    </script>
-
-
-<section class="post-list">
-    
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-    
+            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+  
 <section class="meta">
   
   <div class="meta" id="header-meta">
     
-      <h2 class="title">
-          <a href="/2019/02/21/bignews/">
-              
-                  大新闻
-              
-          </a>
-      </h2>
+      
+          <h1 class="title">在Manjaro上安装MySQL</h1>
+      
     
 
     
       <time class="metatag time">
-        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2019-02-21
-      </time>
-    
-
-    
-      
-    
-    <div class="metatag cats">
-        <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;<a class="categories" href="/categories/Start-Linux/">Start_Linux</a>
-    </div>
-
-
-    
-
-    
-
-    
-      <div class="metatag top">
-        <i class="fas fa-angle-double-up fa-fw" aria-hidden="true"></i>&nbsp;置顶
-      </div>
-    
-
-  </div>
-</section>
-
-    <section class="article typo">
-        <h2 id="正在以Linux-Nginx-MySQL-Python-Django的架构和全栈的方式做一个新的个人博客-备用站点"><a href="#正在以Linux-Nginx-MySQL-Python-Django的架构和全栈的方式做一个新的个人博客-备用站点" class="headerlink" title="正在以Linux+Nginx+MySQL+Python Django的架构和全栈的方式做一个新的个人博客(备用站点)"></a>正在以Linux+Nginx+MySQL+Python Django的架构和全栈的方式做一个新的个人博客(备用站点)</h2><ul>
-<li>开发阶段的系统环境：Manjaro 18， 服务器系统环境：Ubuntu Server 18.04</li>
-<li>第一版v0.9.0已经发布, 现在开始更新一个系列的文章内容来讲解这次的开发过程和技术实现</li>
-<li><a href="https://gitee.com/Mark-ThinkPad/newbie_blog" target="_blank" rel="noopener">项目地址</a></li>
-<li>本站新增Github Pages托管页面: <a href="https://mark-thinkpad.github.io/" target="_blank" rel="noopener">https://mark-thinkpad.github.io/</a></li>
-</ul>
-<hr>
-
-        
-
-        
-            <div class="full-width auto-padding tags">
-                
-                    <a href="/tags/Linux/"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
-                
-                    <a href="/tags/Manjaro/"><i class="fas fa-hashtag fa-fw"></i>Manjaro</a>
-                
-            </div>
-        
-    </section>
-</article>
-
-          </div>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-        <div class="post-wrapper">
-          <article class="post reveal ">
-    
-<section class="meta">
-  
-  <div class="meta" id="header-meta">
-    
-      <h2 class="title">
-          <a href="/2018/09/20/QQ_Spider/">
-              
-                  简单到不能再简单的QQ空间自动点赞实战
-              
-          </a>
-      </h2>
-    
-
-    
-      <time class="metatag time">
-        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2018-09-20
+        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2019-03-06
       </time>
     
 
@@ -318,6 +197,12 @@
     
 
     
+      
+        <div class="metatag browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+          &nbsp;<span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+        </div>
+      
+    
 
     
 
@@ -325,49 +210,171 @@
 </section>
 
     <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
         <h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><!-- TOC -->
 <ul>
 <li><a href="#content">Content</a><ul>
-<li><a href="#python3实现方法针对桌面网页端">Python3实现方法(针对桌面网页端)</a></li>
-<li><a href="#jquery实现同样针对桌面网页端">jQuery实现(同样针对桌面网页端)</a></li>
+<li><a href="#背景简介">背景简介</a></li>
+<li><a href="#添加-arch-cn-源">添加 Arch CN 源</a></li>
+<li><a href="#安装并初始化-mysql">安装并初始化 MySQL</a></li>
+<li><a href="#创建你的第一个-database">创建你的第一个 Database</a></li>
+<li><a href="#创建完成">创建完成</a></li>
 </ul>
 </li>
 </ul>
 <!-- /TOC -->
 <hr>
+<a id="more"></a>
+<hr>
+<h2 id="背景简介"><a href="#背景简介" class="headerlink" title="背景简介"></a>背景简介</h2><blockquote>
+<p>在 <code>Arch</code> 的官方文档中 <code>(Arch &amp;&amp; Manjaro 一家亲)</code>, <code>MariaDB</code> 是 <code>Arch</code> 官方定义的 <code>MySQL</code> 的默认实现, <code>Arch</code> 官方已经不再支持 <code>MySQL</code> , 转而支持 <code>MariaDB</code> (关于MySQL和MariaDB的故事, 有兴趣的可以在Google或者Bing必应上搜一下, 百度我已经很少用了), 但是我偏偏就是要装 <code>MySQL</code>, 不慌, 在 <code>Arch cn</code> 源中有现成的包.</p>
+</blockquote>
+<hr>
+<h2 id="添加-Arch-CN-源"><a href="#添加-Arch-CN-源" class="headerlink" title="添加 Arch CN 源"></a>添加 Arch CN 源</h2><ul>
+<li>添加 <code>Arch CN</code>源: <a href="http://mirrors.ustc.edu.cn/help/archlinuxcn.html" target="_blank" rel="noopener">中科大Arch Linux CN源使用帮助</a></li>
+</ul>
+<blockquote>
+<p>简要说明: <code>Arch CN</code> 源是一个 <code>补充性质</code> 的源, 是一个适合天朝国情的 <code>本地化软件源</code>, 并不能取代官方的主软件源, 类似的Debian也有Debian CN源, 其中收录了网易云音乐, WPS, 搜狗输入法等本地化软件</p>
+</blockquote>
+<hr>
+<h2 id="安装并初始化-MySQL"><a href="#安装并初始化-MySQL" class="headerlink" title="安装并初始化 MySQL"></a>安装并初始化 MySQL</h2><ul>
+<li><a href="https://www.jianshu.com/p/12c871f937f7" target="_blank" rel="noopener">参考文档</a> (博主是参考这篇文章安装成功的)</li>
+<li><p>以下是安装步骤(全程终端):</p>
+<ul>
+<li><code>sudo pacman -S mysql</code></li>
+<li><p>安装完成后在终端中会显示以下提示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">正在安装 mysql-clients (8.0.11-1)...</span><br><span class="line">正在安装 mysql (8.0.11-1)...</span><br><span class="line">:: You need to initialize the MySQL data directory prior to starting</span><br><span class="line">the service. This can be done with mysqld --initialize command, e.g.:</span><br><span class="line">mysqld --initialize --user=mysql --basedir=/usr --datadir=/var/lib/mysql</span><br><span class="line">:: Additionally you should secure your MySQL installation using</span><br><span class="line">mysql_secure_installation command after starting the mysqld service</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>那么需要执行上述的两条命令来初始化MySQL</p>
+</blockquote>
+</li>
+<li><p>初始化MySql数据目录/注意记录root临时密码(以下操作如果无法显示初始化失败, 请在命令的最前面加上 <code>sudo</code>): <code>mysqld --initialize --user=mysql --basedir=/usr --datadir=/var/lib/mysql</code>, 注意记录root用户的临时密码</p>
+</li>
+<li><p>查看MySql状态: <code>sudo systemctl status mysqld</code>, 这时候不出意外是没有开启的</p>
+<blockquote>
+<p>小贴士: 善用 <code>Tab键</code> 自动补全</p>
+</blockquote>
+</li>
+<li><p>启动MySql服务/开机自启: <code>sudo systemctl start mysqld</code>, <code>sudo systemctl enable mysqld</code></p>
+</li>
+<li><p>此时可以再次查看一下 <code>mysqld.service</code> 是否启动</p>
+<blockquote>
+<p>注: <code>.service</code> 后缀可以省略, <code>Tab键</code> 自动补全时会带上 <code>.service</code> 后缀</p>
+</blockquote>
+</li>
+<li><p>账户安全设置/需要使用root临时密码登陆(执行不成功请加上 <code>sudo</code> 提权): <code>mysql_secure_installation</code></p>
+</li>
+<li><p>后面的操作, 能看懂基本的单词和语句应该几下子就搞完了</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="创建你的第一个-Database"><a href="#创建你的第一个-Database" class="headerlink" title="创建你的第一个 Database"></a>创建你的第一个 Database</h2><ul>
+<li>进入MySQL: <code>mysql -u root -p</code></li>
+<li>输入root用户密码: <code>Enter password:******  # 登录后进入终端</code></li>
+<li>创建Database: <code>CREATE DATABASE 数据库名;</code> (注意结尾一定要打分号!)</li>
+<li>查看Database: <code>show databases;</code>, maybe是这样的(博主创建了一个叫做blog的Database):<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| blog               |</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="创建完成"><a href="#创建完成" class="headerlink" title="创建完成"></a>创建完成</h2>
+      </div>
         
-            <div class="readmore">
-                <a href="/2018/09/20/QQ_Spider/" class="flat-box">
-                    <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-                    阅读全文
-                </a>
-            </div>
+          <section class="meta" id="footer-meta">
+            
+              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-18T19:27:50+08:00" content="2019-03-18"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
+                &nbsp;2019-03-18
+              </time>
+            
+            
+                
+                <div class="metatag tags"><a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Linux</a></div> <div class="metatag tags"><a class="tag" href="/tags/MySQL/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;MySQL</a></div>
+            
+            
+          </section>
         
 
         
-            <div class="full-width auto-padding tags">
+            <div class="prev-next">
                 
-                    <a href="/tags/Linux/"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/2019/03/09/django_blog0/" rel="prev" title="Django实战之搭建个人博客(准备篇)">
+                                  
+                                      Django实战之搭建个人博客(准备篇)
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Django/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Django</a> <a class="tag" href="/tags/Web/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Web</a> <a class="tag" href="/tags/Python3/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python3</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
-                    <a href="/tags/自动点赞/"><i class="fas fa-hashtag fa-fw"></i>自动点赞</a>
                 
-                    <a href="/tags/QQ空间/"><i class="fas fa-hashtag fa-fw"></i>QQ空间</a>
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/2019/02/21/bignews/" rel="prev" title="大新闻">
+                                    
+                                        大新闻
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Manjaro/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Manjaro</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
             </div>
         
+
     </section>
+
 </article>
 
-        </div>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
       
-    
-</section>
+      
+        <div class="recommended_posts">
+    <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;相关文章</h4>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/02/21/bignews/" title="大新闻" rel="bookmark">大新闻</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/17/django_blog1/" title="Django实战之搭建个人博客(Ajax篇)" rel="bookmark">Django实战之搭建个人博客(Ajax篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/09/django_blog0/" title="Django实战之搭建个人博客(准备篇)" rel="bookmark">Django实战之搭建个人博客(准备篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2018/10/04/django0/" title="Django项目创建流程" rel="bookmark">Django项目创建流程</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2018/09/20/QQ_Spider/" title="简单到不能再简单的QQ空间自动点赞实战" rel="bookmark">简单到不能再简单的QQ空间自动点赞实战</a></h3></div></li></ul>
+</div>
+
+      
+      
+    </section>
+  </article>
 
 
 
-<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-
-
+<script>
+    window.subData = {
+        title: '在Manjaro上安装MySQL',
+        tools: true
+    }
+</script>
 
 
         </div>
@@ -532,6 +539,28 @@
         
 
 
+  <section class="music">
+    
+<header class="material">
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+  
+    <a class="rightBtn" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/user/home?id=35189854" title="https://music.163.com/#/user/home?id=35189854">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class="content material">
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer" data-theme="#1BCDFC" data-mode="circulation" data-server="netease" data-type="playlist" data-id="2347451090" data-volume="0.7">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
 
       
     
@@ -670,6 +699,20 @@
       
       
         
+  <section class="toc-wrapper">
+    
+<header class="material">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章目录</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content material">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景简介"><span class="toc-text">背景简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加-Arch-CN-源"><span class="toc-text">添加 Arch CN 源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装并初始化-MySQL"><span class="toc-text">安装并初始化 MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建你的第一个-Database"><span class="toc-text">创建你的第一个 Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建完成"><span class="toc-text">创建完成</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
       
     
