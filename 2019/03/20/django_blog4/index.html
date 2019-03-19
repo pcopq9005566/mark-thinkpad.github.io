@@ -182,7 +182,7 @@
 
     
       <time class="metatag time">
-        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2019-03-19
+        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2019-03-20
       </time>
     
 
@@ -246,7 +246,7 @@
 <hr>
 <h2 id="基本格式规范"><a href="#基本格式规范" class="headerlink" title="基本格式规范"></a>基本格式规范</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># XXX Api</span></span><br><span class="line"><span class="comment"># @login_required(redirect_field_name='', login_url='/login_page/') # 强制要求登录(可选)</span></span><br><span class="line"><span class="meta">@csrf_exempt # 允许跨域请求</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xxx_api</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.is_ajax():</span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">"POST"</span>:</span><br><span class="line">            <span class="keyword">return</span> JsonResponse(&#123;<span class="string">"status"</span>: <span class="string">"OK"</span>&#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> HttpResponseForbidden <span class="comment"># 返回 403 Forbidden</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> HttpResponseServerError() <span class="comment"># 一般情况返回 500 Server Error, 但是不一定就只能返回500</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>这样写的话, 逻辑结构非常清晰, <code>判断这个请求是否为ajax发送的请求</code> (如果不用ajax请去掉这一层if..else) =&gt; <code>判断这个请求是否为POST</code> (需要GET方法就改成GWT) =&gt; <code>是POST, 执行相应的业务逻辑代码</code> =&gt; <code>业务逻辑执行成功, 返回json数据给前端处理</code></p>
+<p>这样写的话, 逻辑结构非常清晰, <code>判断这个请求是否为ajax发送的请求</code> (如果不用ajax请去掉这一层if..else) =&gt; <code>判断这个请求是否为POST</code> (需要GET方法就改成GET) =&gt; <code>是POST, 执行相应的业务逻辑代码</code> =&gt; <code>业务逻辑执行成功, 返回json数据给前端处理</code></p>
 </blockquote>
 <blockquote>
 <p>根据具体的业务逻辑, 最后的返回语句可以在错误捕获和条件判断中灵活处理</p>
@@ -261,7 +261,7 @@
         
           <section class="meta" id="footer-meta">
             
-              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-19T17:00:41+08:00" content="2019-03-19"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
+              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-19T17:04:41+08:00" content="2019-03-19"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
                 &nbsp;2019-03-19
               </time>
             
@@ -276,33 +276,14 @@
         
             <div class="prev-next">
                 
-                    <section class="prev">
-                        <span class="art-item-left">
-                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                            <h4>
-                                <a href="/2019/03/19/django_blog3/" rel="prev" title="Django实战之搭建个人博客(回车触发点击篇)">
-                                  
-                                      Django实战之搭建个人博客(回车触发点击篇)
-                                  
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Django/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Django</a> <a class="tag" href="/tags/Web/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Web</a> <a class="tag" href="/tags/Python3/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python3</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
-                
                 
                     <section class="next">
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019/03/18/django_blog2/" rel="prev" title="Django实战之搭建个人博客(表单js判空篇)">
+                                <a href="/2019/03/19/django_blog3/" rel="prev" title="Django实战之搭建个人博客(回车触发点击篇)">
                                     
-                                        Django实战之搭建个人博客(表单js判空篇)
+                                        Django实战之搭建个人博客(回车触发点击篇)
                                     
                                 </a>
                             </h4>
