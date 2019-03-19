@@ -215,6 +215,7 @@
 <ul>
 <li><a href="#content">Content</a><ul>
 <li><a href="#用途简介">用途简介</a></li>
+<li><a href="#开发环境">开发环境</a></li>
 <li><a href="#html部分">HTML部分</a></li>
 <li><a href="#js部分">js部分</a></li>
 <li><a href="#基本的实例讲完了-相信大家很快就能举一反三">基本的实例讲完了, 相信大家很快就能举一反三</a></li>
@@ -225,9 +226,23 @@
 <hr>
 <a id="more"></a>
 <hr>
+<blockquote>
+<p>该系列文章源码来自: <a href="https://gitee.com/Mark-ThinkPad/newbie_blog" target="_blank" rel="noopener">博主第一次手撸博客(Django)</a><br>温馨提示: 该系列教程不提供前端布局和美化方面的内容, 博主本行是后端, 在我的项目中前端部分采用的框架是 <code>Materialize</code>, 是谷歌 <code>Material Design</code> 设计风格的前端框架, 欲知详情请点击上方提供的仓库地址, 也可以 <code>clone</code> 下来看看实际效果, 如想使用修改我的项目源码, 请遵循 <code>GPL v3</code> 开源许可证</p>
+</blockquote>
+<hr>
 <h2 id="用途简介"><a href="#用途简介" class="headerlink" title="用途简介"></a>用途简介</h2><blockquote>
 <p>通过Ajax或者其他方式向后端API发送数据后, 后端API可能要执行较多的SQL操作, 我们知道, 为了不让服务器的身体被掏空(即CPU和I/O不堪重负), 我们要尽可能的保证向服务器发送的是有效的数据, 避免服务器资源 <code>白给</code> (wdnmd真就茄化了呗), 我们需要前端去做表单验证, 以免麻烦服务器多做一些不必要的后端验证导致SQL操作增加抢占服务器运算资源. 那么, 这篇教程带来的是 <code>使用js对表单数据判断是否为空</code></p>
 </blockquote>
+<hr>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
+<li>操作系统: <code>Manjaro Linux 18</code></li>
+<li>Python版本: <code>Python3</code> <blockquote>
+<p>提示: Manjaro把Python3作为默认的Python版本, 其他发行版可能默认版本是Python2, 如果默认为Python2, 以下出现的Python和pip命令请使用python3和pip3</p>
+</blockquote>
+</li>
+<li>Django版本: <code>v2.1.5</code></li>
+<li>jQuery版本: <code>v3.3.1</code></li>
+</ul>
 <hr>
 <h2 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"col s-12"</span> <span class="attr">id</span>=<span class="string">"login-form"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">maxlength</span>=<span class="string">"8"</span> <span class="attr">required</span> <span class="attr">onchange</span>=<span class="string">"isEmpty()"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"username"</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">maxlength</span>=<span class="string">"16"</span> <span class="attr">required</span> <span class="attr">onchange</span>=<span class="string">"isEmpty()"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"password"</span>&gt;</span>密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"login-button"</span> <span class="attr">disabled</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">disabled</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -255,8 +270,8 @@
         
           <section class="meta" id="footer-meta">
             
-              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-18T20:20:29+08:00" content="2019-03-18"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
-                &nbsp;2019-03-18
+              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-19T16:30:31+08:00" content="2019-03-19"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
+                &nbsp;2019-03-19
               </time>
             
             
@@ -269,6 +284,25 @@
 
         
             <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
+                            <h4>
+                                <a href="/2019/03/19/django_blog4/" rel="prev" title="Django实战之搭建个人博客(后端API编写规范篇)">
+                                  
+                                      Django实战之搭建个人博客(后端API编写规范篇)
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Django/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Django</a> <a class="tag" href="/tags/Web/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Web</a> <a class="tag" href="/tags/Python3/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python3</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
                 
                 
                     <section class="next">
@@ -312,7 +346,7 @@
       
         <div class="recommended_posts">
     <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;相关文章</h4>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/17/django_blog1/" title="Django实战之搭建个人博客(Ajax篇)" rel="bookmark">Django实战之搭建个人博客(Ajax篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/09/django_blog0/" title="Django实战之搭建个人博客(准备篇)" rel="bookmark">Django实战之搭建个人博客(准备篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2018/10/04/django0/" title="Django项目创建流程" rel="bookmark">Django项目创建流程</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/02/21/bignews/" title="大新闻" rel="bookmark">大新闻</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/06/mysqlInstallOnManjaro/" title="在Manjaro上安装MySQL" rel="bookmark">在Manjaro上安装MySQL</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/19/django_blog3/" title="Django实战之搭建个人博客(回车触发点击篇)" rel="bookmark">Django实战之搭建个人博客(回车触发点击篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/19/django_blog4/" title="Django实战之搭建个人博客(后端API编写规范篇)" rel="bookmark">Django实战之搭建个人博客(后端API编写规范篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/17/django_blog1/" title="Django实战之搭建个人博客(Ajax篇)" rel="bookmark">Django实战之搭建个人博客(Ajax篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/09/django_blog0/" title="Django实战之搭建个人博客(准备篇)" rel="bookmark">Django实战之搭建个人博客(准备篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2018/10/04/django0/" title="Django项目创建流程" rel="bookmark">Django项目创建流程</a></h3></div></li></ul>
 </div>
 
       
@@ -417,7 +451,7 @@
         
           <li><a class="flat-box" title="/categories/Play-on-Linux/" href="/categories/Play-on-Linux/"><div class="name">Play_on_Linux</div><div class="badge">(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Programs/" href="/categories/Programs/"><div class="name">Programs</div><div class="badge">(5)</div></a></li>
+          <li><a class="flat-box" title="/categories/Programs/" href="/categories/Programs/"><div class="name">Programs</div><div class="badge">(7)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Start-Linux/" href="/categories/Start-Linux/"><div class="name">Start_Linux</div><div class="badge">(4)</div></a></li>
         
@@ -443,7 +477,7 @@
 </header>
 
     <div class="content material">
-      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/tags/Django/" style="font-size: 19px; color: #777">Django</a> <a href="/tags/Linux/" style="font-size: 24px; color: #555">Linux</a> <a href="/tags/Manjaro/" style="font-size: 14px; color: #999">Manjaro</a> <a href="/tags/MySQL/" style="font-size: 14px; color: #999">MySQL</a> <a href="/tags/Python3/" style="font-size: 19px; color: #777">Python3</a> <a href="/tags/QQ空间/" style="font-size: 14px; color: #999">QQ空间</a> <a href="/tags/Web/" style="font-size: 19px; color: #777">Web</a> <a href="/tags/beyond/" style="font-size: 16.5px; color: #888">beyond</a> <a href="/tags/book/" style="font-size: 21.5px; color: #666">book</a> <a href="/tags/deepin-wine/" style="font-size: 14px; color: #999">deepin-wine</a> <a href="/tags/grub2/" style="font-size: 14px; color: #999">grub2</a> <a href="/tags/qq/" style="font-size: 14px; color: #999">qq</a> <a href="/tags/refind/" style="font-size: 14px; color: #999">refind</a> <a href="/tags/self/" style="font-size: 19px; color: #777">self</a> <a href="/tags/terminal/" style="font-size: 14px; color: #999">terminal</a> <a href="/tags/tim/" style="font-size: 14px; color: #999">tim</a> <a href="/tags/双拼/" style="font-size: 14px; color: #999">双拼</a> <a href="/tags/自动点赞/" style="font-size: 14px; color: #999">自动点赞</a>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/tags/Django/" style="font-size: 21.5px; color: #666">Django</a> <a href="/tags/Linux/" style="font-size: 24px; color: #555">Linux</a> <a href="/tags/Manjaro/" style="font-size: 14px; color: #999">Manjaro</a> <a href="/tags/MySQL/" style="font-size: 14px; color: #999">MySQL</a> <a href="/tags/Python3/" style="font-size: 21.5px; color: #666">Python3</a> <a href="/tags/QQ空间/" style="font-size: 14px; color: #999">QQ空间</a> <a href="/tags/Web/" style="font-size: 21.5px; color: #666">Web</a> <a href="/tags/beyond/" style="font-size: 16.5px; color: #888">beyond</a> <a href="/tags/book/" style="font-size: 21.5px; color: #666">book</a> <a href="/tags/deepin-wine/" style="font-size: 14px; color: #999">deepin-wine</a> <a href="/tags/grub2/" style="font-size: 14px; color: #999">grub2</a> <a href="/tags/qq/" style="font-size: 14px; color: #999">qq</a> <a href="/tags/refind/" style="font-size: 14px; color: #999">refind</a> <a href="/tags/self/" style="font-size: 19px; color: #777">self</a> <a href="/tags/terminal/" style="font-size: 14px; color: #999">terminal</a> <a href="/tags/tim/" style="font-size: 14px; color: #999">tim</a> <a href="/tags/双拼/" style="font-size: 14px; color: #999">双拼</a> <a href="/tags/自动点赞/" style="font-size: 14px; color: #999">自动点赞</a>
     </div>
   </section>
 
@@ -662,7 +696,7 @@
 </header>
 
     <div class="content material">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用途简介"><span class="toc-text">用途简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML部分"><span class="toc-text">HTML部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js部分"><span class="toc-text">js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的实例讲完了-相信大家很快就能举一反三"><span class="toc-text">基本的实例讲完了, 相信大家很快就能举一反三</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用途简介"><span class="toc-text">用途简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML部分"><span class="toc-text">HTML部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js部分"><span class="toc-text">js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的实例讲完了-相信大家很快就能举一反三"><span class="toc-text">基本的实例讲完了, 相信大家很快就能举一反三</span></a></li></ol></li></ol>
     </div>
   </section>
 
