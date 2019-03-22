@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>在Manjaro上安装MySQL | Mark&#39;s blog</title>
+  <title>Django实战之搭建个人博客(登录系统篇) | Mark&#39;s blog</title>
   
   
 
@@ -176,13 +176,13 @@
   <div class="meta" id="header-meta">
     
       
-          <h1 class="title">在Manjaro上安装MySQL</h1>
+          <h1 class="title">Django实战之搭建个人博客(登录系统篇)</h1>
       
     
 
     
       <time class="metatag time">
-        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2019-03-06
+        <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;2019-03-20
       </time>
     
 
@@ -190,7 +190,7 @@
       
     
     <div class="metatag cats">
-        <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;<a class="categories" href="/categories/Play-on-Linux/">Play_on_Linux</a>
+        <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;<a class="categories" href="/categories/Programs/">Programs</a>
     </div>
 
 
@@ -214,11 +214,13 @@
         <h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><!-- TOC -->
 <ul>
 <li><a href="#content">Content</a><ul>
-<li><a href="#背景简介">背景简介</a></li>
-<li><a href="#添加-arch-cn-源">添加 Arch CN 源</a></li>
-<li><a href="#安装并初始化-mysql">安装并初始化 MySQL</a></li>
-<li><a href="#创建你的第一个-database">创建你的第一个 Database</a></li>
-<li><a href="#创建完成">创建完成</a></li>
+<li><a href="#整体概述">整体概述</a></li>
+<li><a href="#开发环境">开发环境</a></li>
+<li><a href="#html部分">HTML部分</a></li>
+<li><a href="#js部分">js部分</a></li>
+<li><a href="#viewspy">views.py</a></li>
+<li><a href="#urlspy">urls.py</a></li>
+<li><a href="#its-simple-and-easy">It’s simple and easy</a></li>
 </ul>
 </li>
 </ul>
@@ -226,70 +228,73 @@
 <hr>
 <a id="more"></a>
 <hr>
-<h2 id="背景简介"><a href="#背景简介" class="headerlink" title="背景简介"></a>背景简介</h2><blockquote>
-<p>在 <code>Arch</code> 的官方文档中 <code>(Arch &amp;&amp; Manjaro 一家亲)</code>, <code>MariaDB</code> 是 <code>Arch</code> 官方定义的 <code>MySQL</code> 的默认实现, <code>Arch</code> 官方已经不再支持 <code>MySQL</code> , 转而支持 <code>MariaDB</code> (关于MySQL和MariaDB的故事, 有兴趣的可以在Google或者Bing必应上搜一下, 百度我已经很少用了), 但是我偏偏就是要装 <code>MySQL</code>, 不慌, 在 <code>Arch cn</code> 源中有现成的包.</p>
-</blockquote>
-<hr>
-<h2 id="添加-Arch-CN-源"><a href="#添加-Arch-CN-源" class="headerlink" title="添加 Arch CN 源"></a>添加 Arch CN 源</h2><ul>
-<li>添加 <code>Arch CN</code>源: <a href="http://mirrors.ustc.edu.cn/help/archlinuxcn.html" target="_blank" rel="noopener">中科大Arch Linux CN源使用帮助</a></li>
-</ul>
 <blockquote>
-<p>简要说明: <code>Arch CN</code> 源是一个 <code>补充性质</code> 的源, 是一个适合天朝国情的 <code>本地化软件源</code>, 并不能取代官方的主软件源, 类似的Debian也有Debian CN源, 其中收录了网易云音乐, WPS, 搜狗输入法等本地化软件</p>
+<p>该系列文章源码来自: <a href="https://gitee.com/Mark-ThinkPad/newbie_blog" target="_blank" rel="noopener">博主第一次手撸博客(Django)</a><br>温馨提示: 该系列教程不提供前端布局和美化方面的内容, 博主本行是后端, 在我的项目中前端部分采用的框架是 <code>Materialize</code>, 是谷歌 <code>Material Design</code> 设计风格的前端框架, 欲知详情请点击上方提供的仓库地址, 也可以 <code>clone</code> 下来看看实际效果, 如想使用修改我的项目源码, 请遵循 <code>GPL v3</code> 开源许可证</p>
 </blockquote>
 <hr>
-<h2 id="安装并初始化-MySQL"><a href="#安装并初始化-MySQL" class="headerlink" title="安装并初始化 MySQL"></a>安装并初始化 MySQL</h2><ul>
-<li><a href="https://www.jianshu.com/p/12c871f937f7" target="_blank" rel="noopener">参考文档</a> (博主是参考这篇文章安装成功的)</li>
-<li><p>以下是安装步骤(全程终端):</p>
+<h2 id="整体概述"><a href="#整体概述" class="headerlink" title="整体概述"></a>整体概述</h2><ul>
+<li>使用 <code>Ajax</code> 和 <code>后端API开发模式</code> </li>
+<li>前端有js验证表单(判空)和回车键触发点击事件</li>
+</ul>
+<hr>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
+<li>操作系统: <code>Manjaro Linux 18</code></li>
+<li>Python版本: <code>Python3</code> <blockquote>
+<p>提示: Manjaro把Python3作为默认的Python版本, 其他发行版可能默认版本是Python2, 如果默认为Python2, 以下出现的Python和pip命令请使用python3和pip3</p>
+</blockquote>
+</li>
+<li>Django版本: <code>v2.1.5</code></li>
+<li>jQuery版本: <code>v3.3.1</code></li>
+</ul>
+<hr>
+<h2 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"col s-12"</span> <span class="attr">id</span>=<span class="string">"login-form"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">maxlength</span>=<span class="string">"8"</span> <span class="attr">required</span> <span class="attr">onchange</span>=<span class="string">"isEmpty()"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"username"</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">maxlength</span>=<span class="string">"16"</span> <span class="attr">required</span> <span class="attr">onchange</span>=<span class="string">"isEmpty()"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"password"</span>&gt;</span>密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"login-button"</span> <span class="attr">disabled</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">disabled</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意在form表单的头部或者尾部添加 <code>csrf_token</code> (由于csrf_token字段会导致文章无法上传, 所以无奈删去): 官方资料: <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/csrf/" target="_blank" rel="noopener">跨站点请求伪造保护</a>, 简单的说就是跨域访问是很发生危险的, 有时候不得不用, 所以需要跨域的时候, 加上这个会自动生成 <code>接头暗号</code>,  以保证一定的安全性</p>
+</blockquote>
 <ul>
-<li><code>sudo pacman -S mysql</code></li>
-<li><p>安装完成后在终端中会显示以下提示:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">正在安装 mysql-clients (8.0.11-1)...</span><br><span class="line">正在安装 mysql (8.0.11-1)...</span><br><span class="line">:: You need to initialize the MySQL data directory prior to starting</span><br><span class="line">the service. This can be done with mysqld --initialize command, e.g.:</span><br><span class="line">mysqld --initialize --user=mysql --basedir=/usr --datadir=/var/lib/mysql</span><br><span class="line">:: Additionally you should secure your MySQL installation using</span><br><span class="line">mysql_secure_installation command after starting the mysqld service</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>那么需要执行上述的两条命令来初始化MySQL</p>
-</blockquote>
-</li>
-<li><p>初始化MySql数据目录/注意记录root临时密码(以下操作如果无法显示初始化失败, 请在命令的最前面加上 <code>sudo</code>): <code>mysqld --initialize --user=mysql --basedir=/usr --datadir=/var/lib/mysql</code>, 注意记录root用户的临时密码</p>
-</li>
-<li><p>查看MySql状态: <code>sudo systemctl status mysqld</code>, 这时候不出意外是没有开启的</p>
-<blockquote>
-<p>小贴士: 善用 <code>Tab键</code> 自动补全</p>
-</blockquote>
-</li>
-<li><p>启动MySql服务/开机自启: <code>sudo systemctl start mysqld</code>, <code>sudo systemctl enable mysqld</code></p>
-</li>
-<li><p>此时可以再次查看一下 <code>mysqld.service</code> 是否启动</p>
-<blockquote>
-<p>注: <code>.service</code> 后缀可以省略, <code>Tab键</code> 自动补全时会带上 <code>.service</code> 后缀</p>
-</blockquote>
-</li>
-<li><p>账户安全设置/需要使用root临时密码登陆(执行不成功请加上 <code>sudo</code> 提权): <code>mysql_secure_installation</code></p>
-</li>
-<li><p>后面的操作, 能看懂基本的单词和语句应该几下子就搞完了</p>
-</li>
+<li><code>disabled</code> 是禁用的意思, 如果用在按钮上, 这个按钮可能会变灰而且肯定会点下去无效的, 我们默认禁用按钮, 防止有人恶趣味(#手动滑稽)</li>
 </ul>
-</li>
+<blockquote>
+<p><code>onchang=&quot;isEmpty()&quot;</code> 为表单判空函数</p>
+</blockquote>
+<hr>
+<h2 id="js部分"><a href="#js部分" class="headerlink" title="js部分"></a>js部分</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEmpty</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($(<span class="string">'#username'</span>).val() !== <span class="string">""</span> &amp;&amp; $(<span class="string">'#password'</span>).val() !== <span class="string">""</span>) &#123;</span><br><span class="line">        $(<span class="string">'#login-button'</span>).removeAttr(<span class="string">'disabled'</span>);</span><br><span class="line">        $(<span class="string">'#reset-button'</span>).removeAttr(<span class="string">'disabled'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// alert('不输入全就想登录? Naive!');</span></span><br><span class="line">        $(<span class="string">'#login-button'</span>).attr(&#123;<span class="string">"disabled"</span>:<span class="string">"disabled"</span>&#125;);</span><br><span class="line">        $(<span class="string">'#reset-button'</span>).attr(&#123;<span class="string">"disabled"</span>:<span class="string">"disabled"</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'login-button'</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">"POST"</span>,</span><br><span class="line">        url: <span class="string">"/login_api/"</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            username: $(<span class="string">"#username"</span>).val(),</span><br><span class="line">            password: $(<span class="string">"#password"</span>).val()</span><br><span class="line">        &#125;,</span><br><span class="line">        dataType: <span class="string">"json"</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123; </span><br><span class="line">            <span class="keyword">if</span> (data.status === <span class="string">'1'</span>) &#123;</span><br><span class="line">                alert(<span class="string">'登录成功'</span>);</span><br><span class="line">                <span class="built_in">window</span>.location.href=<span class="built_in">document</span>.referrer||host + <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (data.status === <span class="string">'0'</span>) &#123;</span><br><span class="line">                alert(<span class="string">'很显然你正在做一些不该做的事情'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        error: <span class="function"><span class="keyword">function</span> (<span class="params">jpXHR</span>) </span>&#123;</span><br><span class="line">            alert(<span class="string">"Status Code: "</span> + jpXHR.status);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'password'</span>).onkeydown = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 兼容FF和IE和Opera</span></span><br><span class="line">    <span class="keyword">var</span> theEvent = e || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">var</span> code = theEvent.keyCode || theEvent.which || theEvent.charCode;</span><br><span class="line">    <span class="keyword">if</span> (code === <span class="number">13</span>) &#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'login-button'</span>).click(); <span class="comment">//具体处理函数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>详细解析请看前几篇文章: <a href="/2019/03/17/django_blog1/">Ajax篇</a>, <a href="/2019/03/18/django_blog2/">表单js判空篇</a>, <a href="/2019/03/19/django_blog3/">回车触发点击篇</a></p>
+</blockquote>
+<hr>
+<h2 id="views-py"><a href="#views-py" class="headerlink" title="views.py"></a>views.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth <span class="keyword">import</span> login, authenticate</span><br><span class="line"></span><br><span class="line"><span class="comment"># Login Api</span></span><br><span class="line"><span class="meta">@csrf_exempt</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_api</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.is_ajax():</span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">"POST"</span>:</span><br><span class="line">            name = request.POST[<span class="string">'username'</span>]</span><br><span class="line">            pwd = request.POST[<span class="string">'password'</span>]</span><br><span class="line">            user = authenticate(username=name, password=pwd)</span><br><span class="line">            <span class="keyword">if</span> user <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> user.is_active:</span><br><span class="line">                login(request, user)</span><br><span class="line">                <span class="keyword">return</span> JsonResponse(&#123;</span><br><span class="line">                    <span class="string">"status"</span>: <span class="string">'1'</span>,</span><br><span class="line">                    <span class="string">"message"</span>: <span class="string">'登录成功'</span></span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> JsonResponse(&#123;</span><br><span class="line">                    <span class="string">"status"</span>: <span class="string">'0'</span>,</span><br><span class="line">                    <span class="string">"message"</span>: <span class="string">'登录失败'</span></span><br><span class="line">                &#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> HttpResponseForbidden()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> HttpResponseServerError()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>逻辑结构说明请看上一篇文章: <a href="/2019/03/20/django_blog4/">后端API编写规范篇</a>, 接下来我们解释一下核心的业务逻辑部分</p>
+</blockquote>
+<blockquote>
+<p>由于这个博客项目的v0.9.0版本并没有打算开放注册功能, 所以不需要在头部引入Django自带的User模型, 我们只需要引入 <code>authenticate</code> 验证模块和 <code>login</code> 登录模块, 接下来只需要讲一下思路, 大家就能明白了.</p>
+</blockquote>
+<ul>
+<li>拆分请求数据</li>
+<li>使用 <code>authenticate</code> 方法验证, 如果确实有此用户, 返回一个相应的 <code>User对象</code>, 如果没有, 返回 <code>None</code></li>
+<li>判断, 如果 <code>user变量</code> 不为空且此用户对象是已激活的, 登录并返回给前端一个表示登录成功的Json数据, 如果不满足以上条件, 返回给前端一个表示登录失败的Json数据</li>
+</ul>
+<blockquote>
+<p>有人可能问了, <code>views.py</code> 不是放置视图函数的地方吗? 你这个API函数也不渲染页面, 能叫视图函数吗? 您好, 可以的. 渲染页面只是一部分, 本质是前后端的数据来往.</p>
+</blockquote>
+<hr>
+<h2 id="urls-py"><a href="#urls-py" class="headerlink" title="urls.py"></a>urls.py</h2><ul>
+<li>不做描述, 你我都明白.</li>
 </ul>
 <hr>
-<h2 id="创建你的第一个-Database"><a href="#创建你的第一个-Database" class="headerlink" title="创建你的第一个 Database"></a>创建你的第一个 Database</h2><ul>
-<li>进入MySQL: <code>mysql -u root -p</code></li>
-<li>输入root用户密码: <code>Enter password:******  # 登录后进入终端</code></li>
-<li>创建Database: <code>CREATE DATABASE 数据库名;</code> (注意结尾一定要打分号!)</li>
-<li>查看Database: <code>show databases;</code>, maybe是这样的(博主创建了一个叫做blog的Database):<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| blog               |</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="创建完成"><a href="#创建完成" class="headerlink" title="创建完成"></a>创建完成</h2>
+<h2 id="It’s-simple-and-easy"><a href="#It’s-simple-and-easy" class="headerlink" title="It’s simple and easy"></a>It’s simple and easy</h2>
       </div>
         
           <section class="meta" id="footer-meta">
             
-              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-18T19:27:50+08:00" content="2019-03-18"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
-                &nbsp;2019-03-18
+              <time class="metatag time" itemprop="dateUpdated" datetime="2019-03-22T21:31:29+08:00" content="2019-03-22"><i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>
+                &nbsp;2019-03-22
               </time>
             
             
                 
-                <div class="metatag tags"><a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Linux</a></div> <div class="metatag tags"><a class="tag" href="/tags/MySQL/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;MySQL</a></div>
+                <div class="metatag tags"><a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Linux</a></div> <div class="metatag tags"><a class="tag" href="/tags/Django/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Django</a></div> <div class="metatag tags"><a class="tag" href="/tags/Web/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Web</a></div> <div class="metatag tags"><a class="tag" href="/tags/Python3/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>&nbsp;Python3</a></div>
             
             
           </section>
@@ -302,9 +307,9 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
                             <h4>
-                                <a href="/2019/03/09/django_blog0/" rel="prev" title="Django实战之搭建个人博客(准备篇)">
+                                <a href="/2019/03/20/django_blog4/" rel="prev" title="Django实战之搭建个人博客(后端API编写规范篇)">
                                   
-                                      Django实战之搭建个人博客(准备篇)
+                                      Django实战之搭建个人博客(后端API编写规范篇)
                                   
                                 </a>
                             </h4>
@@ -322,16 +327,16 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/2019/02/21/bignews/" rel="prev" title="大新闻">
+                                <a href="/2019/03/19/django_blog3/" rel="prev" title="Django实战之搭建个人博客(回车触发点击篇)">
                                     
-                                        大新闻
+                                        Django实战之搭建个人博客(回车触发点击篇)
                                     
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
-                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Manjaro/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Manjaro</a>
+                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Django/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Django</a> <a class="tag" href="/tags/Web/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Web</a> <a class="tag" href="/tags/Python3/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Python3</a>
                                 </h6>
                             
                         </span>
@@ -359,7 +364,7 @@
       
         <div class="recommended_posts">
     <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;相关文章</h4>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/02/21/bignews/" title="大新闻" rel="bookmark">大新闻</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/20/django_blog4/" title="Django实战之搭建个人博客(后端API编写规范篇)" rel="bookmark">Django实战之搭建个人博客(后端API编写规范篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/20/django_blog5/" title="Django实战之搭建个人博客(登录系统篇)" rel="bookmark">Django实战之搭建个人博客(登录系统篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/19/django_blog3/" title="Django实战之搭建个人博客(回车触发点击篇)" rel="bookmark">Django实战之搭建个人博客(回车触发点击篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/18/django_blog2/" title="Django实战之搭建个人博客(表单js判空篇)" rel="bookmark">Django实战之搭建个人博客(表单js判空篇)</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/20/django_blog4/" title="Django实战之搭建个人博客(后端API编写规范篇)" rel="bookmark">Django实战之搭建个人博客(后端API编写规范篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/19/django_blog3/" title="Django实战之搭建个人博客(回车触发点击篇)" rel="bookmark">Django实战之搭建个人博客(回车触发点击篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/18/django_blog2/" title="Django实战之搭建个人博客(表单js判空篇)" rel="bookmark">Django实战之搭建个人博客(表单js判空篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/17/django_blog1/" title="Django实战之搭建个人博客(Ajax篇)" rel="bookmark">Django实战之搭建个人博客(Ajax篇)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/2019/03/09/django_blog0/" title="Django实战之搭建个人博客(准备篇)" rel="bookmark">Django实战之搭建个人博客(准备篇)</a></h3></div></li></ul>
 </div>
 
       
@@ -371,7 +376,7 @@
 
 <script>
     window.subData = {
-        title: '在Manjaro上安装MySQL',
+        title: 'Django实战之搭建个人博客(登录系统篇)',
         tools: true
     }
 </script>
@@ -709,7 +714,7 @@
 </header>
 
     <div class="content material">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景简介"><span class="toc-text">背景简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加-Arch-CN-源"><span class="toc-text">添加 Arch CN 源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装并初始化-MySQL"><span class="toc-text">安装并初始化 MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建你的第一个-Database"><span class="toc-text">创建你的第一个 Database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建完成"><span class="toc-text">创建完成</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Content"><span class="toc-text">Content</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#整体概述"><span class="toc-text">整体概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML部分"><span class="toc-text">HTML部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js部分"><span class="toc-text">js部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#views-py"><span class="toc-text">views.py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#urls-py"><span class="toc-text">urls.py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#It’s-simple-and-easy"><span class="toc-text">It’s simple and easy</span></a></li></ol></li></ol>
     </div>
   </section>
 
